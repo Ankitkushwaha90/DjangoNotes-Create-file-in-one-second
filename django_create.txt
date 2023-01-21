@@ -1,0 +1,98 @@
+step 1:
+-----------------------------
+#django-admin startproject hello
+#python manage.py startapp home
+
+-------------------------------
+
+
+step2:
+-------------------------------
+#setting:
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / "templates"],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+TEMPLATES--------
+BASE_DIR / "templates",
+------------------------------
+
+
+
+step 3:
+#newapp--> urls.py 
+-----------------------------------
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('home.urls'))
+    
+]
+
+
+step 4:
+#home--> urls.py 
+
+--------------------------------
+from django.urls import path
+from home import views
+
+urlpatterns = [
+     path('', views.index, name='home'),
+]
+--------------------------
+
+
+step 5:
+---------------------------------------------
+#home ->views.py file
+
+
+from django.shortcuts import render
+
+# Create your views here.
+def index(request):
+    return render(request, 'index.html')
+
+-----------------------------------------------------
+
+
+
+
+
+///////////////////////extends nav code ///////////////////
+{% extends 'base.html' %}
+
+{% block anyNameCangive %} {% endblock anyNameCangive %} 
+
+{% block title %} {% endblock title %} 
+
+
+{% block body %} {% endblock body %} 
+
+for admin  ->https://www.youtube.com/watch?v=ZtLkzg8bFgA
+#python manage.py makemigrations
+#python manage.py migrate
+
+
+
+
+
+
+#setting:
+TEMPLATES--------
+BASE_DIR / "templates",
